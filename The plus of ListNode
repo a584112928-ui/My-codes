@@ -1,0 +1,43 @@
+//来自leetcode第二题，两数相加，在单链表中的具体体现
+/**
+ * Definition for singly-linked list.               //单链表的定义
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode *head =nullptr, *tail = nullptr;  //初始化头指针和尾指针为空
+        int carry = 0;                             //自定义进位为0
+        
+        while(l1||l2){                             //只有二者之一存在才进行该循环（不管二者的位数相同与否）
+            int n1=l1 ? l1->val:0;                 //同上，赋值
+            int n2=l2 ? l2->val:0;
+            int sum =n1 + n2 + carry;              //计算当下结点两数之和
+
+            if(!head){
+                head = tail = new ListNode(sum%10);//保存和数
+            }
+            else{
+                tail->next = new ListNode(sum%10);
+                tail=tail->next;
+            }
+         carry = sum/10;
+         if(l1){
+            l1=l1->next;
+         }
+         if(l2){
+            l2=l2->next;
+         }
+         }
+         if(carry>0){
+            tail->next = new ListNode(carry);       //最后进位加新结点
+         }
+         return head;
+    }
+};  
