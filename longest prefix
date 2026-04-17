@@ -1,4 +1,4 @@
-\\最长公共前缀，来自leetcode第十四题
+//最长公共前缀，来自leetcode第十四题
 class Solution {
 public:
     string longestCommonPrefix(vector<string>& strs) {
@@ -17,10 +17,10 @@ public:
     }
     string longestCommonPrefix(const string& str1, const string& str2){
         int length = min(str1.size(),str2.size());
-        int index=0;
+        int index=0;                 //截取的元素位数
         while(index < length && str1[index]==str2[index]){
             ++index;
         }
-        return str1.substr(0,index); \\xxx.substr(a,b)该函数意为截取字符串从a到b的元素
+        return str1.substr(0,index); //xxx.substr(a,b)该函数意为截取字符串从a到b的元素
     }
 };
