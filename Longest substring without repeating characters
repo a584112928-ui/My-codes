@@ -1,0 +1,20 @@
+//来自Leetcode第三题，寻找无重复字符的最长字串
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {          //此处是设定函数，string是调用字符串的格式
+        unordered_set<char> occ;                      //哈希集合，用来记录当前窗口里出现过的字符用来快速判断：这个字符有没有重复
+        int n=s.size();                               
+        int rk = -1, ans = 0;                         //rk是滑动窗口的右指针，-1时表示未开始
+        for(int i = 0;i < n; ++i){                    //定义左指针
+            if(i!=0){
+                occ.erase(s[i-1]);                    //窗口左指针向右移动一位意味着左边那个字符要移出窗口所以从集合里删掉它，左指针做一次变动就要让右指针一直变大，以至碰到重复的字符，然后删去occ集合的occ(s[i])
+            }
+            while(rk + 1< n && !occ.count(s[rk+1])){
+                occ.insert(s[rk+1]);                  //unordered_set自带的函数，插入，除此之外还有.erase删除和.count查重
+                ++rk;
+            }
+            ans = max(ans, rk-i+1);                   //记录指针位置，返回二者之中更大的那个值
+        }
+        return ans;
+    }
+};
