@@ -1,0 +1,16 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target)  \\<vector>头文件，调用
+{
+        int n=nums.size();                             \\保存n为该数组元素个数
+        int i,j;
+        for(i=0;i<nums.size();i++){ 
+            for(j=i+1;j<nums.size();j++){
+                if(nums[i]+nums[j]==target){
+                    return {i,j};                      \\返回数组元素位置
+                }
+            }
+        }
+        return{};
+    }
+};
